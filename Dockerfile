@@ -28,7 +28,7 @@ RUN git clone --recursive https://github.com/renode/renode.git /renode
 
 ADD https://download.mono-project.com/sources/gtk-sharp212/gtk-sharp-2.12.0.tar.bz2 ./gtk-sharp-2.12.0.tar.bz2
 
-WORKDIR /renode/build
+WORKDIR /renode
 
-RUN ../build.sh -vp -b ./src/Renode/Renode.csproj
+RUN ./build.sh -vp -b  Renode.sln
 
