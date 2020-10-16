@@ -17,18 +17,16 @@ RUN apk add --no-cache --virtual renode-build-dependencies \
     curl-dev \
     coreutils
 
-RUN apk add --no-cache --virtual mono-edge-build-dependencies \
+RUN apk add --no-cache --virtual renode-edge-build-dependencies \
     --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     --repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
     --repository http://dl-cdn.alpinelinux.org/alpine/edge/main \
-    mono
+    mono-dev
 
-ENV RENODE_REVISION master
+ENV RENODE_REVISION v1.10.1
 RUN git clone --recursive https://github.com/renode/renode.git /renode
-
-ADD https://download.mono-project.com/sources/gtk-sharp212/gtk-sharp-2.12.0.tar.bz2 ./gtk-sharp-2.12.0.tar.bz2
 
 WORKDIR /renode
 
-RUN ./build.sh -vp -b  Renode.sln
+RUN ./build.sh -v -b Renode.sln
 
